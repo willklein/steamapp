@@ -1,0 +1,30 @@
+extends layout
+block content
+  div(class='navbar navbar-fixed-top')
+    .navbar-inner
+      .container
+        a(class='btn btn-navbar', data-toggle='collapse', data-target='.nav-collapse')
+          span(class='icon-bar')
+          span(class='icon-bar')
+          span(class='icon-bar')
+        a(class='brand', href='/') HartfordJS
+        .nav-collapse
+          ul(class='nav')
+            li(class='active')
+              a(href='/') Home
+            li
+              a(href='/') About
+  br
+  br
+  br              
+  .container-fluid
+    .row-fluid
+      .span3
+        div(class='well sidebar-nav')
+          ul(id='exampleList', class='nav nav-list')
+            li(class='nav-header') Examples
+            li 
+              a(href='/') Examples
+      .span9
+        .hero-unit
+          h1 Hartford JS
