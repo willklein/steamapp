@@ -10,7 +10,7 @@ block content
         a(class='brand', href='/') HartfordJS
         .nav-collapse
           p(class='navbar-text pull-right')
-            a(href='/')
+            a(href='#loginModal', role='button', data-toggle='modal')
               img(src='/img/sits_small.png', alt='Sign in through Steam')
           ul(class='nav')
             li(class='active')
@@ -32,3 +32,15 @@ block content
       .span9
         .hero-unit
           h1 Hartford JS
+          p Welcome #{user}
+  div(id='loginModal', class='modal hide fade', tabindex='-1', role='dialog', aria-labelledby='loginModalLabel', aria-hidden='true')
+    form#openid(action='/auth/openid')
+      .modal-header
+        button(type='button', class='close', data-dismiss='modal', aria-hidden='true') x
+        h3 Sign In
+      .modal-body
+          fieldset
+            label OpenID Steam Url
+            input(type='text', class='input-xxlarge', name='openid_identifier', value='http://steamcommunity.com/openid/id/<steamid>')
+            span(class='help-block') Replace <steamid> with your steamid
+            input(type='submit', class='btn btn-primary', value='Login')

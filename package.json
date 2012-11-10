@@ -1,6 +1,6 @@
 {
   "name": "nko3-hartfordjs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "HartfordJS",
   "main": "server.js",
   "scripts": {
@@ -17,7 +17,9 @@
     "mongoose": "3.3.x",
     "ejs": "0.8.3",
     "request": "2.x.x",
-    "cheerio": "0.10.x"
+    "cheerio": "0.10.x",
+    "passport": "0.1.x",
+    "passport-steam": "0.1.x"
   },
   "engines": {
     "node": "0.8.x"
