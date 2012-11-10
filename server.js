@@ -17,7 +17,7 @@ app.configure(function() {
 });
 
 //connect to the db
-mongoose.connect(process.env.PORT || 'mongodb://localhost/hartfordJS');
+mongoose.connect(process.env.DB_URL || 'mongodb://localhost/hartfordJS');
 
 app.get('/', function(req, res) {
     Game.find({}, function(err, games) {
