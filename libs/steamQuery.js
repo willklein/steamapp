@@ -1,5 +1,6 @@
 var xml2json = require('xml2json');
 var request = require('request');
+var readProfile = require('./readProfile');
 
 var steamCommunity = {
     getProfile: function(customURL) {
@@ -30,9 +31,10 @@ var player = function(playerKey, cb) {
             cb({ error: "steamCommunity API Error: " + err });
         }
         
-        var result = xml2json.toJson(data.body);
+        var result = xml2json.toJson(data.body, { object: true });
+        var profile = readProfile(result);
         
-        cb(null, result);
+        cb(null, profile);
     });
 };
 
@@ -44,17 +46,17 @@ var steamQuery = function() {
 
 // sample usage
 
-//var query = steamQuery();
-//
-//query.player({
-//    steamID64: '76561197972886336',
-//    customURL: 'willscience'
-//}, function(err, result) {
-//    if (err) {
-//        console.log("Error: " + err);
-//    }
-//    
-//    console.log(result);
-//});
+var query = steamQuery();
+
+query.player({
+    steamID64: '76561197972886336',
+    customURL: 'willscience'
+}, function(err, result) {
+    if (err) {
+        console.log("Error: " + err);
+    }
+    
+    console.log(result);
+});
 
 module.exports = steamQuery;
