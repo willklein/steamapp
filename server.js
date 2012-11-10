@@ -17,13 +17,13 @@ app.configure(function() {
         dumpExceptions: true,
         showStack: true
     }));
+    app.use(express.cookieParser('keyboard cat'));
+    app.use(express.session());
     app.use(express.bodyParser());
-    express.cookieParser();
-    express.session({ secret: 'keepguessing'});
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(app.router);
-    app.use(express.static(__dirname + '/public'));    
+    app.use(express.static(__dirname + '/public'));
 });
 
 //connect to the db
