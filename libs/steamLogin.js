@@ -26,7 +26,7 @@ passport.use(new SteamStrategy({
 ));
 
 var createLoginRoutes =function(app, user) {
-	app.get('/auth/openid',
+	app.get('/login',
 	  passport.authenticate('steam', { failureRedirect: '/' }),
 	  function(req, res) {
 	  	user = userProfile;
