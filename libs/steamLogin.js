@@ -1,8 +1,8 @@
 var mongoose = require('mongoose'),
     _ = require('underscore'),
     passport = require('passport'),
-    SteamStrategy = require('passport-steam').Strategy,
-    userProfile;
+    Player = require('../models/player'),
+    SteamStrategy = require('passport-steam').Strategy;
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -18,25 +18,31 @@ passport.use(new SteamStrategy({
   },
   function(identifier, profile, done) {
       process.nextTick(function () {
+      var steamID64 = identifier.substring(identifier.lastIndexOf('/')+1);
 	  profile.identifier = identifier;
-	  userProfile = profile;
-      return done(null, profile)
+	  Player.findOne({'steamID64': steamID64}, function(err, player) {
+	    if(player) {
+	    	return done(null, player);
+	    } else {
+	    	player = new Player({steamID64: steamID64});
+	  		player.save();
+	  		return done(null, player);
+	    }
+	  });      
     });
   }
 ));
 
-var createLoginRoutes =function(app, user) {
-	app.get('/auth/openid',
+var createLoginRoutes =function(app) {
+	app.get('/login',
 	  passport.authenticate('steam', { failureRedirect: '/' }),
 	  function(req, res) {
-	  	user = userProfile;
 	    res.redirect('/');
 	  });
 
 	app.get('/auth/steam/return',
 	  passport.authenticate('steam', { failureRedirect: '/' }),
 	  function(req, res) {
-	  	user = userProfile;
 	    res.redirect('/');
 	  });
 
@@ -44,7 +50,6 @@ var createLoginRoutes =function(app, user) {
 	  req.logout();
 	  res.redirect('/');
 	});
-
 	
 }
 
