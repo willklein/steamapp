@@ -2,7 +2,7 @@
     var xml2json = require('xml2json');
     var request = require('request');
     
-    var api = {
+    var steamCommunity = {
         getProfile: function(customURL) {
             return 'http://steamcommunity.com/id/' + customURL + '/?xml=1';
         },
@@ -14,9 +14,19 @@
         }
     };
     
+    var getCustomURL = function(steamID64) {
+        // get it
+        
+        return 'willscience';
+    };
     
-    var player = function(steamID64) {
-        var request;
+    
+    var player = function(playerKey) {
+        if (!playerKey.customURL && playerKey.steamID64) {
+            getCustomURL(playerKey.steamID64);
+        }
+        
+//        var apiRequest = request(steamCommunity.);
         var parser = xml2json.Parser();
         // mock data
         return {
