@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><profile>
+    <steamID64>76561197972886336</steamID64>
+    <steamID><![CDATA[WillSci]]></steamID>
+    <onlineState>offline</onlineState>
+    <stateMessage><![CDATA[Last Online: 21 hrs, 1 mins ago]]></stateMessage>
+    <privacyState>public</privacyState>
+    <visibilityState>3</visibilityState>
+    <avatarIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/avatars/a6/a6340d219beb553b9679d18a7b229620c59c39ad.jpg]]></avatarIcon>
+    <avatarMedium><![CDATA[http://media.steampowered.com/steamcommunity/public/images/avatars/a6/a6340d219beb553b9679d18a7b229620c59c39ad_medium.jpg]]></avatarMedium>
+    <avatarFull><![CDATA[http://media.steampowered.com/steamcommunity/public/images/avatars/a6/a6340d219beb553b9679d18a7b229620c59c39ad_full.jpg]]></avatarFull>
+    <vacBanned>0</vacBanned>
+    <tradeBanState>None</tradeBanState>
+    <isLimitedAccount>0</isLimitedAccount>
+    <customURL><![CDATA[willscience]]></customURL>
+    <memberSince>January 5, 2005</memberSince>
+    <steamRating>3.5</steamRating>
+    <hoursPlayed2Wk>11.3</hoursPlayed2Wk>
+    <headline><![CDATA[]]></headline>
+    <location><![CDATA[United States]]></location>
+    <realname><![CDATA[Will]]></realname>
+    <summary><![CDATA[No information given.]]></summary>
+    <mostPlayedGames>
+        <mostPlayedGame>
+            <gameName><![CDATA[Sid Meier's Civilization V]]></gameName>
+            <gameLink><![CDATA[http://steamcommunity.com/app/8930]]></gameLink>
+            <gameIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/8930/fbe80c4743e226f0bf65559c91b12953d4446808.jpg]]></gameIcon>
+            <gameLogo><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/8930/2203f62bd1bdc75c286c13534e50f22e3bd5bb58.jpg]]></gameLogo>
+            <gameLogoSmall><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/8930/2203f62bd1bdc75c286c13534e50f22e3bd5bb58_thumb.jpg]]></gameLogoSmall>
+            <hoursPlayed>8.6</hoursPlayed>
+            <hoursOnRecord>17.9</hoursOnRecord>
+            <statsName><![CDATA[CivV]]></statsName>
+        </mostPlayedGame>
+        <mostPlayedGame>
+            <gameName><![CDATA[Borderlands 2]]></gameName>
+            <gameLink><![CDATA[http://steamcommunity.com/app/49520]]></gameLink>
+            <gameIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/49520/a3f4945226e69b6196074df4c776e342d3e5a3be.jpg]]></gameIcon>
+            <gameLogo><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/49520/86b0fa5ddb41b4dfff7df194a017f3418130d668.jpg]]></gameLogo>
+            <gameLogoSmall><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/49520/86b0fa5ddb41b4dfff7df194a017f3418130d668_thumb.jpg]]></gameLogoSmall>
+            <hoursPlayed>1.9</hoursPlayed>
+            <hoursOnRecord>4.5</hoursOnRecord>
+            <statsName><![CDATA[Borderlands2]]></statsName>
+        </mostPlayedGame>
+        <mostPlayedGame>
+            <gameName><![CDATA[Counter-Strike: Global Offensive]]></gameName>
+            <gameLink><![CDATA[http://steamcommunity.com/app/730]]></gameLink>
+            <gameIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/730/69f7ebe2735c366c65c0b33dae00e12dc40edbe4.jpg]]></gameIcon>
+            <gameLogo><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/730/d0595ff02f5c79fd19b06f4d6165c3fda2372820.jpg]]></gameLogo>
+            <gameLogoSmall><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/730/d0595ff02f5c79fd19b06f4d6165c3fda2372820_thumb.jpg]]></gameLogoSmall>
+            <hoursPlayed>0.6</hoursPlayed>
+            <hoursOnRecord>4.5</hoursOnRecord>
+            <statsName><![CDATA[CSGO]]></statsName>
+        </mostPlayedGame>
+        <mostPlayedGame>
+            <gameName><![CDATA[Gratuitous Space Battles]]></gameName>
+            <gameLink><![CDATA[http://steamcommunity.com/app/41800]]></gameLink>
+            <gameIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/41800/c9dd42b84a380a4f002bbb56aab8a7a91d664fa1.jpg]]></gameIcon>
+            <gameLogo><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/41800/d77409d24f8d41331ccbe0efef2582c9703b56bc.jpg]]></gameLogo>
+            <gameLogoSmall><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/41800/d77409d24f8d41331ccbe0efef2582c9703b56bc_thumb.jpg]]></gameLogoSmall>
+            <hoursPlayed>0.1</hoursPlayed>
+            <hoursOnRecord>0.1</hoursOnRecord>
+        </mostPlayedGame>
+    </mostPlayedGames>
+
+
+    <weblinks>
+    </weblinks>
+
+    <groups>
+        <group isPrimary="1">
+            <groupID64>103582791429570843</groupID64>
+            <groupName><![CDATA[Fall Brawlers]]></groupName>
+            <groupURL><![CDATA[fallbrawlers]]></groupURL>
+            <headline><![CDATA[]]></headline>
+            <summary><![CDATA[I'm working on it...]]></summary>
+            <avatarIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/avatars/3f/3fe14d430c4b48cb0fe0f354b95d7335e74e5cb1.jpg]]></avatarIcon>
+            <avatarMedium><![CDATA[http://media.steampowered.com/steamcommunity/public/images/avatars/3f/3fe14d430c4b48cb0fe0f354b95d7335e74e5cb1_medium.jpg]]></avatarMedium>
+            <avatarFull><![CDATA[http://media.steampowered.com/steamcommunity/public/images/avatars/3f/3fe14d430c4b48cb0fe0f354b95d7335e74e5cb1_full.jpg]]></avatarFull>
+            <memberCount>72</memberCount>
+            <membersInChat>0</membersInChat>
+            <membersInGame>2</membersInGame>
+            <membersOnline>8</membersOnline>
+        </group>
+        <group isPrimary="0">
+            <groupID64>103582791429729126</groupID64>
+            <groupName><![CDATA[Amphibilan]]></groupName>
+            <groupURL><![CDATA[amphibilan]]></groupURL>
+            <headline><![CDATA[Official group for the scythik.com LAN parties]]></headline>
+            <summary><![CDATA[Join us online as well as offline for crazy times]]></summary>
+            <avatarIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/avatars/68/6819e2cd5f93cef59c0738312ebf52992404dd60.jpg]]></avatarIcon>
+            <avatarMedium><![CDATA[http://media.steampowered.com/steamcommunity/public/images/avatars/68/6819e2cd5f93cef59c0738312ebf52992404dd60_medium.jpg]]></avatarMedium>
+            <avatarFull><![CDATA[http://media.steampowered.com/steamcommunity/public/images/avatars/68/6819e2cd5f93cef59c0738312ebf52992404dd60_full.jpg]]></avatarFull>
+            <memberCount>63</memberCount>
+            <membersInChat>0</membersInChat>
+            <membersInGame>3</membersInGame>
+            <membersOnline>8</membersOnline>
+        </group>
+        <group isPrimary="0">
+            <groupID64>103582791432188903</groupID64>
+        </group>
+        <group isPrimary="0">
+            <groupID64>103582791432271929</groupID64>
+        </group>
+        <group isPrimary="0">
+            <groupID64>103582791432706584</groupID64>
+        </group>
+    </groups>
+</profile>
