@@ -24,10 +24,9 @@
             <div class="well sidebar-nav">
                 <ul id="exampleList" class="nav nav-list">
                     <li class="nav-header">Examples</li>
-                    <li><a href="/">Sid Meier's Civilization V</a></li>
-                    <li><a href="/">Borderlands 2</a></li>
-                    <li><a href="/">Counter-Strike: Global Offensive</a></li>
-                    <li><a href="/">Amnesia: The Dark Descent</a></li>
+                    <% for(var i=0; i<games.length; i++) {%>
+                    <li><%= games[i].gameName %></li>
+                    <% } %>
                 </ul>
             </div>
         </div>
