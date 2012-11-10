@@ -19,7 +19,8 @@
     "request": "2.x.x",
     "cheerio": "0.10.x",
     "passport": "0.1.x",
-    "passport-steam": "0.1.x"
+    "passport-steam": "0.1.x",
+    "xml2json": "~0.3.2"
   },
   "engines": {
     "node": "0.8.x"
