@@ -44,7 +44,7 @@ var getDetailSpecs = function($){
 };
 
 
-var getGameInfo = function(appId){
+var getGameInfo = function(appId, cb){
     request.post('http://store.steampowered.com/agecheck/app/' + appId,
         {
             form : {
@@ -58,12 +58,12 @@ var getGameInfo = function(appId){
             var $, specs, results;
 
             if (err){
-                return { error: 'Something went bad'};
+                cb({ error: 'Something went bad'});
             }
 
             request('http://store.steampowered.com/app/' + appId, function(err, data){
                 if (err){
-                    return { error: 'Something went bad'};
+                    cb({ error: 'Something went bad'});
                 }
 
                 $ = cheerio.load(data.body);
@@ -75,9 +75,9 @@ var getGameInfo = function(appId){
                     isCoop: specs.isCoop,
                     gameIcon: getGameIcon($),
                     metaScore: getMetaScore($) || null
-                }
+                };
 
-                return results;
+                cb(null, results);
             });
     });
 };

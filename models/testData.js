@@ -9,7 +9,7 @@ var player, group, game;
 //local 
 //mongoose.connect('mongodb://localhost/hartfordJS');
 
-mongoose.connect(process.env.PORT || 'mongodb://localhost/hartfordJS');
+mongoose.connect(process.env.DB_URL || 'mongodb://localhost/hartfordJS');
 //games
 
 Game.remove({}, function(err) { 
