@@ -27,13 +27,18 @@
                     <% for(var i=0; i<games.length; i++) {%>
                     <li><%= games[i].gameName %></li>
                     <% } %>
+                    <li class="nav-header">Players</li>
+                    <% for(var i=0; i<players.length; i++) {%>
+                    <li><%= players[i].steamID64 %></li>
+                    <% } %>
                 </ul>
             </div>
         </div>
         <div class="span9">
             <div class="hero-unit"><h1>Hartford JS</h1>
-
-                <p>Welcome <%=user%></p></div>
+                <% if(user) {%>
+                    <p>Welcome <%=user.steamID64%></p></div>
+                <% } %>
         </div>
     </div>
 </div>
