@@ -58,12 +58,12 @@ var getGameInfo = function(appId, cb){
             var $, specs, results;
 
             if (err){
-                return { error: 'Something went bad'};
+                cb({ error: 'Something went bad'});
             }
 
             request('http://store.steampowered.com/app/' + appId, function(err, data){
                 if (err){
-                    return { error: 'Something went bad'};
+                    cb({ error: 'Something went bad'});
                 }
 
                 $ = cheerio.load(data.body);
@@ -75,9 +75,9 @@ var getGameInfo = function(appId, cb){
                     isCoop: specs.isCoop,
                     gameIcon: getGameIcon($),
                     metaScore: getMetaScore($) || null
-                }
+                };
 
-                cb(results);
+                cb(null, results);
             });
     });
 };
