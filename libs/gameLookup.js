@@ -44,7 +44,7 @@ var getDetailSpecs = function($){
 };
 
 
-var getGameInfo = function(appId){
+var getGameInfo = function(appId, cb){
     request.post('http://store.steampowered.com/agecheck/app/' + appId,
         {
             form : {
@@ -77,7 +77,7 @@ var getGameInfo = function(appId){
                     metaScore: getMetaScore($) || null
                 }
 
-                return results;
+                cb(results);
             });
     });
 };
