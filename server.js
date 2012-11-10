@@ -15,8 +15,8 @@ app.configure(function() {
         showStack: true
     }));
     app.use(express.bodyParser());
-    express.cookieParser()
-    express.session({ secret: 'keepguessing'})
+    express.cookieParser();
+    express.session({ secret: 'keepguessing'});
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(app.router);

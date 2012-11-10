@@ -15,7 +15,7 @@
     };
     
     var getCustomURL = function(steamID64) {
-        // get it
+        // make API call to get it
         
         return 'willscience';
     };
