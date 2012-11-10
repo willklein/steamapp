@@ -23,8 +23,9 @@ block content
         div(class='well sidebar-nav')
           ul(id='exampleList', class='nav nav-list')
             li(class='nav-header') Examples
-            li 
-              a(href='/') Examples
+            each game in games
+              li 
+                a(href='/')= game.gameName
       .span9
         .hero-unit
           h1 Hartford JS

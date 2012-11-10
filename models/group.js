@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var member = new Schema({
+var member = new mongoose.Schema({
 	steamID64  : String
 });
 

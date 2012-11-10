@@ -1,6 +1,7 @@
 var express = require('express'),
     mongoose = require('mongoose'),
     _ = require('underscore'),
+    Game = require('./models/game'),
     app = express();
 
 app.configure(function() {
@@ -15,8 +16,13 @@ app.configure(function() {
     }));
 });
 
+//connect to the db
+mongoose.connect(process.env.PORT || 'mongodb://localhost/hartfordJS');
+
 app.get('/', function(req, res) {
-    res.render('index', {});
+    Game.find({}, function(err, games) {
+        res.render('index', {games: games} );
+    });
 });
 
-app.listen(8000);
+app.listen(process.env.PORT || 3000);

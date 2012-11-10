@@ -1,18 +1,18 @@
 var mongoose = require('mongoose');
 
-var game = new Schema({
+var game = new mongoose.Schema({
 	appID  : String
 });
 
-var group = new Schema({
+var group = new mongoose.Schema({
 	groupID64  : String
 });
 
 var PlayerSchema = new mongoose.Schema({
 	steamID64: String,
 	steamID: String,
-	customURL: String
-	avatarIcon: String
+	customURL: String,
+	avatarIcon: String,
 	games: [game],
 	groups: [group]
 });
