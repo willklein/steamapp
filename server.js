@@ -4,12 +4,15 @@ var express = require('express'),
     passport = require('passport'),
     Game = require('./models/game'),
     app = express(),
+    engine = require('ejs-locals'),
     steamLogin = require('./libs/steamLogin'),
     user = {};
 
 app.configure(function() {
+    // use ejs-locals for all ejs templates:
+    app.engine('ejs', engine);
     app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
+    app.set('view engine', 'ejs');
     app.use(express.errorHandler({
         dumpExceptions: true,
         showStack: true
