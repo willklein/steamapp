@@ -218,34 +218,35 @@ module.exports = function(app){
         });
     });
 
-    app.get('/party/new', function(req, res){
-        if (req.isAuthenticated()){
-            steamQuery().player(req.user, function(err, data){
-                var groups = (data && data.groups) || [];
+    app.get('/party/new', function(req, res) {
+        if (req.isAuthenticated()) {
+            steamQuery().player(req.user, function(err, data) {
                 if (err){
                     console.log(err);
                 }
-                res.render('index', { user: req.user, groups: groups });
+                
+                var groups = (data && data.groups) || [];
+                res.render('party/new', { user: req.user, groups: groups });
             });
         } else {
             req.redirect('/');
         }
     });
 
-    app.post('/party/delete', function(req, res){
-        if (req.isAuthenticated() && req.body.id){
-
-            Party.remove({steamID64: req.user.steamID64, _id: req.body.id }, function(err){
-                if (err){
-                    res.end('Error ' + err);
-                } else {
-                    res.end('Removed ' + req.body.id);
-                }
-            });
-        } else {
-            res.end('Not authenticated');
-        }
-    });
+//    app.post('/party/delete', function(req, res){
+//        if (req.isAuthenticated() && req.body.id){
+//
+//            Party.remove({steamID64: req.user.steamID64, _id: req.body.id }, function(err){
+//                if (err){
+//                    res.end('Error ' + err);
+//                } else {
+//                    res.end('Removed ' + req.body.id);
+//                }
+//            });
+//        } else {
+//            res.end('Not authenticated');
+//        }
+//    });
 
     app.get('/party/list', function(req, res){
         if (req.isAuthenticated()){
