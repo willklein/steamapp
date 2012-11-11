@@ -26,7 +26,12 @@
           type: 'POST',
           url: '/party/create',
           data: { groups: [groupID64] },
-          success: function(data) { console.log('redirect url: ' + data.redirect); },
+          success: function(data) {
+            console.log('redirect url: ' + data.redirect);
+            if (data.redirect) {
+              window.location.href = data.redirect;
+            }
+          },
           dataType: 'json'
         });
       });
