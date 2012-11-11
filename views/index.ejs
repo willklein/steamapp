@@ -1,11 +1,24 @@
 <% layout('layout') -%>
-<div class="container">
-
-  <div class="jumbotron">
-    <p class="lead">Steam Games, Groups and players</p>
+  <div class="mainArea backImg">
+    <div class="row-fluid">
+      <div id="leftBox" class="span4" style="margin-left:300px;">
+        <ul class="info-menu">
+            <li><h4>Teams<h4></li>
+            <li class="divider"></li>
+            <li><p>Create teams with your friends to play shared games</p></li>
+        </ul>
+      </div>
+      <div id="rightBox" class="span4">
+        <ul class="info-menu">
+            <li><h4>Groups<h4></li>
+            <li class="divider"></li>
+            <li><p>Groups will show info about your games and friends</p></li>
+        </ul>
+      </div>
+    </div>
+    
+    <br />
     <% if(!user) {%>
-        <a class="btn btn-large btn-success" href="/login">Sign in with Steam</a>
+        <a class="btn btn-large btn btn-primary" href="/login">Sign in with Steam</a>
     <% } %>
   </div>
-
-</div>

@@ -190,7 +190,7 @@ module.exports = function(app){
                     ], function(err, results){
                         viewData = getViewData(results[0]);
                         console.log('Show time: ', id, ' ', Date.now() - startTime);
-                        res.render('index', { user: req.user, groups: [] });
+                        res.render('party/show', { user: req.user, groups: groups, data: data });
                     });
                 });
             });
