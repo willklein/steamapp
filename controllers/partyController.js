@@ -95,7 +95,7 @@ module.exports = function(app){
 
                     // create data to use when rendering
                     // render page
-                    res.render('index', { user: req.user, groups: groups });
+                    res.render('party/show', { user: req.user, groups: groups, data: data });
                 });
             });
         });

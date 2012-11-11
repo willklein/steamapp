@@ -1,0 +1,11 @@
+<% layout('../layout') -%>
+<div class="container">
+    <%for(var i = 0; i <data.players.length; i++) {%>
+    <div>
+        <span class="label label-success"><%=data.players[i].steamID64 %></span>
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+    <%}%>
+</div>
