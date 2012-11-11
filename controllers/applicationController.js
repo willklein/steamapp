@@ -1,14 +1,11 @@
-var steamQuery = require('./../libs/steamQuery');
+var steamQuery = require('./../libs/steamQuery'),
+    Party = require('./../models/party');
 
 module.exports = function(app){
     app.get('/', function(req, res) {
         if (req.isAuthenticated()){
-            steamQuery().player(req.user, function(err, data){
-                var groups = (data && data.groups) || [];
-                if (err){
-                    console.log(err);
-                }
-                res.render('index', { user: req.user, groups: groups });
+            Party.find({steamID64: req.user.steamID64}, function(err, data){
+                res.render('index', { user: req.user, parties: data });
             });
         } else {
             res.render('index', { user: null, groups: [] });

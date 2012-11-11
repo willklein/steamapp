@@ -232,16 +232,26 @@ module.exports = function(app){
         }
     });
 
-    app.post('/party/delete/:id', function(req, res){
+    app.post('/party/delete', function(req, res){
+        if (req.isAuthenticated() && req.body.id){
 
+            Party.remove({steamID64: req.user.steamID64, _id: req.body.id }, function(err){
+                if (err){
+                    res.end('Error ' + err);
+                } else {
+                    res.end('Removed ' + req.body.id);
+                }
+            });
+        } else {
+            res.end('Not authenticated');
+        }
     });
 
     app.get('/party/list', function(req, res){
         if (req.isAuthenticated()){
             Party.find({steamID64: req.user.steamID64}, function(err, data){
-                req.send('Data');
+                res.send(data);
             });
-
         } else {
             req.redirect('/');
         }
