@@ -198,12 +198,12 @@ module.exports = function(app){
 
     app.post('/party/create', function(req, res){
         // Get All Users of group
-        var groupIds = req.body.groupIds || [];
+        var groups = req.body.groups || [];
         var playerIds = req.body.playerIds || [];
         var steamID64 = req.user.steamID64 || '';
 
         var party = new Party({
-            groups: groupIds,
+            groups: groups,
             steamID64: steamID64
 //            players: playerIds
         });
@@ -214,7 +214,7 @@ module.exports = function(app){
                 return err;
             }
             console.log(party.id);
-            res.redirect('/party/show/' + party.id);
+            res.end(JSON.stringify({ redirect: '/party/show/' + party.id }));
         });
     });
 
@@ -224,7 +224,8 @@ module.exports = function(app){
                 if (err){
                     console.log(err);
                 }
-                res.render('index', { user: req.user, groups: groups });
+                var groups = (data && data.groups) || [];
+                res.render('party/new', { user: req.user, groups: groups });
             });
         } else {
             req.redirect('/');
