@@ -201,8 +201,10 @@ module.exports = function(app){
         var groups = req.body.groups || [];
         var playerIds = req.body.playerIds || [];
         var steamID64 = req.user.steamID64 || '';
+        var name =  req.body.name || '';
 
         var party = new Party({
+            name: name,
             groups: groups,
             steamID64: steamID64
 //            players: playerIds
