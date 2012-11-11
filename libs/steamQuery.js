@@ -2,6 +2,7 @@ var xml2json = require('xml2json');
 var request = require('request');
 var readProfile = require('./readProfile');
 var readGames = require('./readGames');
+var readGroup = require('./readGroup');
 var readFriends = require('./readFriends');
 
 var steamCommunity = {
@@ -17,6 +18,12 @@ var steamCommunity = {
     getGamesByID64: function(steamID64) {
         return 'http://steamcommunity.com/profiles/' + steamID64 + '/games/?xml=1';
     },
+    getGroup: function(groupURL) {
+        return 'http://steamcommunity.com/groups/' + groupURL + '/memberslistxml';
+    },
+    getGroupByID64: function(groupID64) {
+        return 'http://steamcommunity.com/gid/' + groupID64 + '/memberslistxml';
+    },  
     getFriends: function(customURL) {
         return 'http://steamcommunity.com/id/' + customURL + '/friends/?xml=1';
     },
@@ -76,12 +83,30 @@ var friends = function(playerKey, cb) {
     });
 };
 
+var group = function(groupKey, cb) {
+    var url = groupKey.groupURL
+        ? steamCommunity.getGroup(groupKey.groupURL)
+        : steamCommunity.getGroupByID64(groupKey.groupID64);
+
+    request(url, function(err, data) {
+        if (err) {
+            cb({ error: "steamCommunity API Error: " + err });
+        }
+
+        var result = xml2json.toJson(data.body, { object: true });
+        var group = readGroup(result);
+
+        cb(null, group);
+    });
+};
+
 
 
 var steamQuery = function() {
     return {
         player: player,
         games: games,
+        group: group,
         friends: friends
     };
 };
@@ -91,6 +116,10 @@ var steamQuery = function() {
 //var playerKey = {
 //    steamID64: '76561197972886336'
 ////  , customURL: 'willscience'
+//};
+//var groupKey = {
+//    groupID64: '103582791429570843'
+////    , groupURL: 'fallbrawlers'
 //};
 //var query = steamQuery();
 
@@ -102,6 +131,13 @@ var steamQuery = function() {
 //});
 
 //query.games(playerKey, function(err, result) {
+//    if (err) {
+//        console.log("Error: " + err);
+//    }
+//    console.log(result);
+//});
+
+//query.group(groupKey, function(err, result) {
 //    if (err) {
 //        console.log("Error: " + err);
 //    }
