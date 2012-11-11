@@ -88,11 +88,11 @@ var steamQuery = function() {
 
 // sample usage
 
-var playerKey = {
-    steamID64: '76561197972886336'
-//  , customURL: 'willscience'
-};
-var query = steamQuery();
+//var playerKey = {
+//    steamID64: '76561197972886336'
+////  , customURL: 'willscience'
+//};
+//var query = steamQuery();
 
 //query.player(playerKey, function(err, result) {
 //    if (err) {
@@ -108,11 +108,11 @@ var query = steamQuery();
 //    console.log(result);
 //});
 
-query.friends(playerKey, function(err, result) {
-    if (err) {
-        console.log("Error: " + err);
-    }
-    console.log(result);
-});
+//query.friends(playerKey, function(err, result) {
+//    if (err) {
+//        console.log("Error: " + err);
+//    }
+//    console.log(result);
+//});
 
 module.exports = steamQuery;
