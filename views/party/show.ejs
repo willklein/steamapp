@@ -7,7 +7,7 @@
             <th><span class="label">Steam Username</span></th>
             <%for(var i = 0; i < data.games.length; i++) {%>
                 <!--<th><%=data.games[i].name%></th>-->
-                <th><img src="<%=data.games[i].gameIcon%>" title=""></img><span class="label label-info"><%=data.games[i].name%></span></th>
+                <th><img class="img-rounded" alt="<%=data.games[i].name%>" title="<%=data.games[i].name%>" src="<%=data.games[i].gameIcon%>" title=""></img></th>
             <%}%>
         </tr>
     </thead>
