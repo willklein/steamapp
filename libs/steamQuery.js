@@ -1,4 +1,3 @@
-var xml2json = require('xml2json');
 var xml2js = require('xml2js');
 var request = require('request');
 var readProfile = require('./readProfile');
