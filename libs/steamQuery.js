@@ -116,8 +116,6 @@ var group = function(groupKey, cb) {
     });
 };
 
-
-
 var steamQuery = function() {
     return {
         player: player,
