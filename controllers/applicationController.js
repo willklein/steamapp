@@ -1,21 +1,17 @@
 var steamQuery = require('./../libs/steamQuery');
 
-
 module.exports = function(app){
     app.get('/', function(req, res) {
-        var groups;
-
-        // If users is authenticated
-
         if (req.isAuthenticated()){
-            // get Groups
-            console.log(req.user);
             steamQuery().player(req.user, function(err, data){
-                console.log(data);
-                res.render('index', { user: req.user, games: [], players: [] });
+                var groups = (data && data.groups) || [];
+                if (err){
+                    console.log(err);
+                }
+                res.render('index', { user: req.user, groups: groups });
             });
         } else {
-            res.render('index', { user: null, games: [], players: [] });
+            res.render('index', { user: null, groups: [] });
         }
     });
 };
