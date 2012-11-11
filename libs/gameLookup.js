@@ -1,5 +1,7 @@
 var request = require('request');
+var req = require('./request');
 var cheerio = require('cheerio');
+var Cache = require('./../models/cache');
 
 var getGeneres = function($){
     var results = [];
@@ -43,42 +45,66 @@ var getDetailSpecs = function($){
     return result;
 };
 
+var memCache = {};
+
+var parseBody = function(appId, body){
+    var $, specs, results;
+    $ = cheerio.load(body);
+    specs = getDetailSpecs($);
+    results = {
+        appID: appId,
+        name: getName($),
+        generes: getGeneres($),
+        isMultiplayer: specs.isMultiplayer,
+        isCoop: specs.isCoop,
+        gameIcon: getGameIcon($),
+        metaScore: getMetaScore($) || null
+    };
+    return results;
+};
 
 var getGameInfo = function(appId, cb){
-    request.post('http://store.steampowered.com/agecheck/app/' + appId,
-        {
-            form : {
-                snr: '1_agecheck_agecheck__age-gate',
-                ageDay: '1',
-                ageMonth: 'January',
-                ageYear: '1975'
-            }
-        },
-        function(err){
-            var $, specs, results;
+    var storeUrl = 'http://store.steampowered.com/app/' + appId;
 
-            if (err){
-                cb({ error: 'Something went bad'});
-            }
+    if (memCache[storeUrl]){
+        cb.call(null, null, memCache[storeUrl]);
+        return;
+    }
 
-            request('http://store.steampowered.com/app/' + appId, function(err, data){
+    Cache.findOne({url: storeUrl}, function(err, cache){
+        if (!err && cache){
+            var results = parseBody(appId, cache.body);
+            memCache[storeUrl] = results;
+            cb(null, results);
+            return;
+        }
+
+        request.post('http://store.steampowered.com/agecheck/app/' + appId,
+            {
+                form : {
+                    snr: '1_agecheck_agecheck__age-gate',
+                    ageDay: '1',
+                    ageMonth: 'January',
+                    ageYear: '1975'
+                }
+            },
+            function(err){
                 if (err){
-                    cb({ error: 'Something went bad'});
+                    cb('Something went bad');
+                    return;
                 }
 
-                $ = cheerio.load(data.body);
-                specs = getDetailSpecs($);
-                results = {
-                    name: getName($),
-                    generes: getGeneres($),
-                    isMultiplayer: specs.isMultiplayer,
-                    isCoop: specs.isCoop,
-                    gameIcon: getGameIcon($),
-                    metaScore: getMetaScore($) || null
-                };
-
-                cb(null, results);
-            });
+                request(storeUrl, function(err, data){
+                    if (err){
+                        cb('Something went bad');
+                        return;
+                    }
+                    var results = parseBody(appId, data.body);
+                    memCache[storeUrl] = results;
+                    cb(null, results);
+                });
+            }
+        );
     });
 };
 //getGameInfo(4920);
