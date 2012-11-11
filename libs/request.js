@@ -18,7 +18,7 @@ module.exports = function(url, cb){
                 }).save();
 
                 cb.call(null, err, data);
-                memCache[url] = results.body;
+                memCache[url] = data.body;
             });
         } else {
 //            console.log('Cache hit', url);

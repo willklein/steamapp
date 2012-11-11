@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var CacheSchema = new mongoose.Schema({
-    url: String,
+    url:  String,
     body: String
 });
 

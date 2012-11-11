@@ -72,13 +72,13 @@ var getGameInfo = function(appId, cb){
     }
 
     Cache.findOne({url: storeUrl}, function(err, cache){
-        if (!err && cache){
+        if (cache){
             var results = parseBody(appId, cache.body);
             memCache[storeUrl] = results;
             cb(null, results);
             return;
         }
-
+        console.log('Cache miss', storeUrl);
         request.post('http://store.steampowered.com/agecheck/app/' + appId,
             {
                 form : {
@@ -99,6 +99,11 @@ var getGameInfo = function(appId, cb){
                         cb('Something went bad');
                         return;
                     }
+                    new Cache({
+                        url: storeUrl,
+                        body: data.body
+                    }).save();
+
                     var results = parseBody(appId, data.body);
                     memCache[storeUrl] = results;
                     cb(null, results);

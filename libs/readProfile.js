@@ -25,14 +25,14 @@ var readProfile = function(data) {
     var profile = data.profile;
     
     return {
-        steamID64: profile.steamID64[0],
-        customURL: profile.customURL[0],
-        steamID: profile.steamID[0],
-        avatarIcon: profile.avatarIcon[0],
-        privacyState: profile.privacyState[0],
-        steamRating: profile.steamRating[0],
-        hoursPlayed2Wk: profile.hoursPlayed2Wk[0],
-        groups: readGroups(profile.groups[0])
+        steamID64: profile.steamID64 && profile.steamID64[0],
+        customURL: profile.customURL && profile.customURL[0],
+        steamID: profile.steamID && profile.steamID[0],
+        avatarIcon: profile.avatarIcon && profile.avatarIcon[0],
+        privacyState: profile.privacyState && profile.privacyState[0],
+        steamRating: profile.steamRating && profile.steamRating[0],
+        hoursPlayed2Wk:  profile.hoursPlayed2Wk && profile.hoursPlayed2Wk[0],
+        groups: (profile.groups && readGroups(profile.groups[0])) || []
     };
 };
 

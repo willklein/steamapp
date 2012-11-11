@@ -1,8 +1,16 @@
 var readGames = function(data) {
-    var game;
+    var game, games;
     var gamesList = data.gamesList;
-    var games = (gamesList.games[0] && gamesList.games[0].game) || [];
     var gamesResult = [];
+
+    if (gamesList.error){
+        return {
+            steamID64: gamesList.steamID64[0],
+            games: gamesResult
+        };
+    }
+    games = (gamesList.games[0] && gamesList.games[0].game) || [];
+
     
     if (games.length === undefined) {
         games = [games];

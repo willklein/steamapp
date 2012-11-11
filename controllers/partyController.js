@@ -165,27 +165,40 @@ module.exports = function(app){
             players = party.players || [];
             groups = party.groups || [];
 
+            console.log('Found party', id);
+
             // create playersArray based on groups and players indexed
             getPlayersFromGroups(groups, function(err, players){
 
                 players = players.concat(players);
 
+                console.log('Retrieved all the players', players.length);
+
                 // in parallel get all games people are playing
                 getGamesFromPlayers(players, function(err, data){
+
+                    console.log('Retrieved all the games');
+
                     async.parallel([
                         function(callback){
                             // lookup gameData
                             getGameData(data, function(err, data){
+                                console.log('Retrieved all the games data');
                                 callback(err, data);
                             });
                         },
                         function(callback){
                             // lookup player info
                             getPlayerInfo(data, function(err, data){
+                                console.log('Retrieved all the player data');
                                 callback(err, data);
                             });
                         }
                     ], function(err, results){
+                        if (!results[0]){
+                            console.log('Problem here');
+                        }
+
                         viewData = getViewData(results[0]);
                         console.log('Show time: ', id, ' ', Date.now() - startTime);
                         res.render('party/show', { user: req.user, groups: groups, data: data });
@@ -193,7 +206,6 @@ module.exports = function(app){
                 });
             });
         });
-
     });
 
     app.post('/party/create', function(req, res){
@@ -220,7 +232,7 @@ module.exports = function(app){
 
     app.get('/party/new', function(req, res){
         if (req.isAuthenticated()){
-            steamQuery().player(req.user, function(err, data){
+            steamQuery.player(req.user, function(err, data){
                 var groups = (data && data.groups) || [];
                 if (err){
                     console.log(err);
