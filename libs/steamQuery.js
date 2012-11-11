@@ -1,4 +1,5 @@
 var xml2json = require('xml2json');
+var xml2js = require('xml2js');
 var request = require('request');
 var readProfile = require('./readProfile');
 var readGames = require('./readGames');
@@ -42,10 +43,14 @@ var player = function(playerKey, cb) {
             cb({ error: "steamCommunity API Error: " + err });
         }
         
-        var result = xml2json.toJson(data.body, { object: true });
-        var profile = readProfile(result);
-        
-        cb(null, profile);
+        var parser = new xml2js.Parser();
+        parser.parseString(data.body, function (err, result) {
+            if (err) {
+                cb({ error: "xml2js Parser Error: " + err });
+            }
+            var player = readProfile(result);
+            cb(null, player);
+        });
     });
 };
 
@@ -59,10 +64,14 @@ var games = function(playerKey, cb) {
             cb({ error: "steamCommunity API Error: " + err });
         }
 
-        var result = xml2json.toJson(data.body, { object: true });
-        var games = readGames(result);
-
-        cb(null, games);
+        var parser = new xml2js.Parser();
+        parser.parseString(data.body, function (err, result) {
+            if (err) {
+                cb({ error: "xml2js Parser Error: " + err });
+            }
+            var games = readGames(result);
+            cb(null, games);
+        });
     });
 };
 
@@ -75,11 +84,15 @@ var friends = function(playerKey, cb) {
         if (err) {
             cb({ error: "steamCommunity API Error: " + err });
         }
-
-        var result = xml2json.toJson(data.body, { object: true });
-        var friends = readFriends(result);
-
-        cb(null, friends);
+        
+        var parser = new xml2js.Parser();
+        parser.parseString(data.body, function (err, result) {
+            if (err) {
+                cb({ error: "xml2js Parser Error: " + err });
+            }
+            var friends = readFriends(result);
+            cb(null, friends);
+        });
     });
 };
 
@@ -93,29 +106,34 @@ var group = function(groupKey, cb) {
             cb({ error: "steamCommunity API Error: " + err });
         }
 
-        var result = xml2json.toJson(data.body, { object: true });
-        var group = readGroup(result);
-
-        cb(null, group);
+        var parser = new xml2js.Parser();
+        parser.parseString(data.body, function (err, result) {
+            if (err) {
+                cb({ error: "xml2js Parser Error: " + err });
+            }
+            var group = readGroup(result);
+            cb(null, group);
+        });
     });
 };
 
 
 
-var steamQuery = function() {
-    return {
-        player: player,
-        games: games,
-        group: group,
-        friends: friends
-    };
-};
+//var steamQuery = function() {
+//    return {
+//        player: player,
+//        games: games,
+//        group: group,
+//        friends: friends
+//    };
+//};
 
 // sample usage
 
 //var playerKey = {
 ////    steamID64: '76561197972886336'
-//    steamID64: '76561197992317700'
+////    steamID64: '76561197992317700' // user w/ single game
+//    steamID64: '76561197992633349'
 ////  , customURL: 'willscience'
 //};
 //var groupKey = {
@@ -138,7 +156,12 @@ var steamQuery = function() {
 //    console.log(result);
 //});
 
-//query.groupg
+//query.group(groupKey, function(err, result) {
+//    if (err) {
+//        console.log("Error: " + err);
+//    }
+//    console.log(result);
+//});
 
 //query.friends(playerKey, function(err, result) {
 //    if (err) {

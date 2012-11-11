@@ -1,25 +1,23 @@
-var ent = require('ent');
-
 var readGroup = function(data) {
     var steamID64;
     var group = data.memberList;
-    var groupDetails = group.groupDetails;
-    var members = (group.members && group.members.steamID64) || [];
+    var groupDetails = group.groupDetails && group.groupDetails[0];
+    var members = (group.members && group.members[0].steamID64) || [];
     var membersResult = [];
 
     for (var i in members) {
         steamID64 = members[i];
 
         membersResult.push({
-            steamID64: steamID64.toString()
+            steamID64: steamID64
         });
     }
 //
     return {
-        groupID64: group.groupID64.toString(),
-        groupName: ent.decode(groupDetails.groupName),
-        groupURL: groupDetails.groupURL,
-        avatarIcon: groupDetails.avatarIcon,
+        groupID64: group.groupID64[0],
+        groupName: groupDetails.groupName[0],
+        groupURL: groupDetails.groupURL[0],
+        avatarIcon: groupDetails.avatarIcon[0],
         members: membersResult
     };
 };

@@ -24,7 +24,8 @@
     "ejs-locals": "~0.2.5",
     "ent": "0.0.4",
     "connect-mongo": "0.2.x",
-    "async": "0.1.x"
+    "async": "0.1.x",
+    "xml2js": "~0.2.0"
   },
   "engines": {
     "node": "0.8.x"
