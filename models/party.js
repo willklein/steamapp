@@ -1,16 +1,16 @@
 var mongoose = require('mongoose');
 
-var member = new mongoose.Schema({
-	steamID64  : String
-});
-
-var game = new mongoose.Schema({
-	appID  : String
-});
+//var groups = new mongoose.Schema({
+//    groupID64  : String
+//});
+//
+//var players = new mongoose.Schema({
+//    steamID64  : String
+//});
 
 var PartySchema = new mongoose.Schema({
-	games: [game],
-	members: [member]
+    groups: [String],
+    players: [String]
 });
 
 module.exports = mongoose.model('Party', PartySchema);
