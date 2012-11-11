@@ -26,7 +26,7 @@
           type: 'POST',
           url: '/party/create',
           data: { groups: [groupID64] },
-          success: function(data) { console.log('created:' + data); },
+          success: function(data) { console.log('redirect url: ' + data.redirect); },
           dataType: 'json'
         });
       });
