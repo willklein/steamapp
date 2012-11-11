@@ -1,11 +1,28 @@
 <% layout('../layout') -%>
-<div class="container">
-    <%for(var i = 0; i <data.players.length; i++) {%>
-    <div>
-        <span class="label label-success"><%=data.players[i].steamID64 %></span>
-        <ul>
-            <li></li>
-        </ul>
-    </div>
-    <%}%>
+<div class="show-party">
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="info">
+            <th>Steam Username</th>
+            <%for(var i = 0; i < data.games.length; i++) {%>
+                <th><%=data.games[i].name%></th>
+            <%}%>
+        </tr>
+    </thead>
+    <tbody>
+        <%for(var i = 0; i < data.players.length; i++) {%>
+        <tr>
+            <td><%=data.players[i].steamID%></td>
+            <%for(var j = 0; j < data.games.length; j++) {
+                if(data.players[i].games[data.games[j].appID]){%>
+                <td>YES</td>
+                <%}else{%>
+                <td>NO</td>
+                <%}%>
+            <%}%>
+        </tr>
+        <%}%>
+    </tbody>
+</table>
 </div>

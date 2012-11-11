@@ -113,3 +113,9 @@ transform:rotate(-7deg);
 -webkit-transform:rotate(-7deg);
 -o-transform:rotate(-7deg);
 }
+
+/*Show Party Styles*/
+.show-party{
+    margin-top: 50px;
+    overflow-x: scroll;
+}
