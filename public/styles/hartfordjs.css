@@ -3,6 +3,10 @@ body {
   color: #5a5a5a;
 }
 
+#mainSection {
+  min-height: 450px;
+}
+
 #footer {
   padding-top: 2px;
 }
