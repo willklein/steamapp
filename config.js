@@ -37,7 +37,7 @@ module.exports = function(app){
             dumpExceptions: true,
             showStack: true
         }));
-        app.use(express.cookieParser()),
+        app.use(express.cookieParser());
         app.use(express.session({
           secret: 'EWFEWFFfEWFFEWFEFWEF',
           maxAge: new Date(Date.now() + 3600000),
