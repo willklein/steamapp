@@ -14,7 +14,7 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new SteamStrategy({
-        returnURL: process.env.REALM ? process.env.REALM + '/auth/steam/return' : 'http://localhost:3000/auth/steam/return',
+        returnURL: process.env.REALM ? process.env.REALM + 'auth/steam/return' : 'http://localhost:3000/auth/steam/return',
         realm: process.env.REALM || 'http://localhost:3000/'
     },
     function(identifier, profile, done) {
