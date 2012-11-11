@@ -116,10 +116,8 @@ var getPlayerInfo = function(data, cb){
             }
         });
 
-
         cb(err, data);
     });
-
 };
 
 var getViewData = function(data){

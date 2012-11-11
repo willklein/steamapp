@@ -1,4 +1,6 @@
 <% layout('layout') -%>
+
+<% if(!user) {%>
   <div class="mainArea backImg">
     <div class="row-fluid">
       <div id="leftBox" class="span4" style="margin-left:300px;">
@@ -18,7 +20,11 @@
     </div>
     
     <br />
-    <% if(!user) {%>
         <a class="btn btn-large btn btn-primary" href="/login">Sign in with Steam</a>
-    <% } %>
+    
   </div>
+<% } else { %>
+  <div>
+    <h1>Your Parties</h1>
+  </div>
+<% } %>
