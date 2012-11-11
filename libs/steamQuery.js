@@ -116,8 +116,6 @@ var group = function(groupKey, cb) {
     });
 };
 
-
-
 var steamQuery = function() {
     return {
         player: player,
@@ -129,24 +127,24 @@ var steamQuery = function() {
 
 // sample usage
 
-var playerKey = {
-//    steamID64: '76561197972886336'
-//    steamID64: '76561197992317700' // user w/ single game
-    steamID64: '76561197992633349'
-//  , customURL: 'willscience'
-};
-var groupKey = {
-    groupID64: '103582791429570843'
-//    , groupURL: 'fallbrawlers'
-};
-var query = steamQuery();
-
-query.player(playerKey, function(err, result) {
-    if (err) {
-        console.log("Error: " + err);
-    }
-    console.log(result);
-});
+//var playerKey = {
+////    steamID64: '76561197972886336'
+////    steamID64: '76561197992317700' // user w/ single game
+//    steamID64: '76561197992633349'
+////  , customURL: 'willscience'
+//};
+//var groupKey = {
+//    groupID64: '103582791429570843'
+////    , groupURL: 'fallbrawlers'
+//};
+//var query = steamQuery();
+//
+//query.player(playerKey, function(err, result) {
+//    if (err) {
+//        console.log("Error: " + err);
+//    }
+//    console.log(result);
+//});
 
 //query.games(playerKey, function(err, result) {
 //    if (err) {
