@@ -1,16 +1,14 @@
 <% layout('../layout') -%>
 
-<div class="container">
-  <br>
-  <br>
-  <br>
+<div class="row-fluid show-grid">
+<div class="span4 offset4">
   <h1>Select a Group</h1>
 
     
   <ul id="groupList">
 
   <% for (var i = 0; i < groups.length; i++) { %>
-    <li><button id="<%= groups[i].groupID64 %>"><%= groups[i].groupName %></button></li>
+    <li><button id="<%= groups[i].groupID64 %>" class="btn btn-primary"><%= groups[i].groupName %></button></li>
   <% } %>
   
   </ul>
@@ -37,5 +35,5 @@
       });
     });
   </script>
-
+</div>
 </div>
