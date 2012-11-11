@@ -203,22 +203,22 @@ module.exports = function(app){
         var groups = req.body.groups || [];
         var playerIds = req.body.playerIds || [];
         var steamID64 = req.user.steamID64 || '';
-        var name =  req.body.name || '';
-
-        var party = new Party({
-            name: name,
-            groups: groups,
-            steamID64: steamID64
+        var name =  steamQuery.group({ groupID64: groups[0] }, function(err, groupDetails) {
+            var party = new Party({
+                name: groupDetails.groupName,
+                groups: groups,
+                steamID64: steamID64
 //            players: playerIds
-        });
+            });
 
-        party.save(function(err){
-            if (err) {
-                console.log('Save Error:', err);
-                return err;
-            }
-            console.log(party.id);
-            res.end(JSON.stringify({ redirect: '/party/show/' + party.id }));
+            party.save(function(err){
+                if (err) {
+                    console.log('Save Error:', err);
+                    return err;
+                }
+                console.log(party.id);
+                res.end(JSON.stringify({ redirect: '/party/show/' + party.id }));
+            });
         });
     });
 
