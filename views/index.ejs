@@ -27,6 +27,14 @@
 <% } else { %>
   <div>
     <h1>Your Parties</h1>
+
+    <ul id="partyList">
+
+      <% for (var i = 0; i < parties.length; i++) { %>
+      <li><a href="/party/show/<%= parties[i]._id %>"><%= parties[i].name || parties[i]._id %></a></li>
+      <% } %>
+
+    </ul>
    
     <a href="/party/new">Create a Party</a>
   </div>
