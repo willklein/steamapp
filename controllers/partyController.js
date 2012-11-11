@@ -129,8 +129,10 @@ var getViewData = function(data){
         }
     }
 
+    var num = playersArr.length / 5;
+
     for (prop in data.gamesHash){
-        if (data.gamesHash.hasOwnProperty(prop)){
+        if (data.gamesHash.hasOwnProperty(prop) && data.gamesHash[prop].count > num){
             gamesArr.push(data.gamesHash[prop]);
         }
     }

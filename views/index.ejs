@@ -25,11 +25,17 @@
     </div>
   </div>
 <% } else { %>
-<div class="row-fluid show-grid">
-    <div class="span4 offset4">
-        <h1>Your Parties</h1>
+  <div>
+  <h1>Your Parties</h1>
 
-        <a href="/party/new">Create a Party</a>
-    </div>
-</div>
+  <ul id="partyList">
+
+      <% for (var i = 0; i < parties.length; i++) { %>
+      <li><a href="/party/show/<%= parties[i]._id %>"><%= parties[i].name || parties[i]._id %></a></li>
+      <% } %>
+
+  </ul>
+
+  <a href="/party/new">Create a Party</a>
+  </div>
 <% } %>
