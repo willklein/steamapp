@@ -1,4 +1,5 @@
 var readGames = function(data) {
+    var game;
     var gamesList = data.gamesList;
     var games = (gamesList.games && gamesList.games.game) || [];
     var gamesResult = [];
