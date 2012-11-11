@@ -198,13 +198,15 @@ module.exports = function(app){
 
     });
 
-    app.post('/party/new', function(req, res){
+    app.post('/party/create', function(req, res){
         // Get All Users of group
         var groupIds = req.body.groupIds || [];
         var playerIds = req.body.playerIds || [];
+        var steamID64 = req.user.steamID64 || '';
 
         var party = new Party({
-            groups: groupIds
+            groups: groupIds,
+            steamID64: steamID64
 //            players: playerIds
         });
 
@@ -218,7 +220,37 @@ module.exports = function(app){
         });
     });
 
-    app.post('/party/edit', function(err, data){
+    app.get('/party/new', function(req, res){
+        if (req.isAuthenticated()){
+            steamQuery().player(req.user, function(err, data){
+                var groups = (data && data.groups) || [];
+                if (err){
+                    console.log(err);
+                }
+                res.render('index', { user: req.user, groups: groups });
+            });
+        } else {
+            req.redirect('/');
+        }
+    });
+
+    app.post('/party/delete/:id', function(req, res){
+
+    });
+
+    app.get('/party/list', function(req, res){
+        if (req.isAuthenticated()){
+            Party.find({steamID64: req.user.steamID64}, function(err, data){
+                req.send('Data');
+            });
+
+        } else {
+            req.redirect('/');
+        }
+
+    });
+
+    app.post('/party/edit', function(req, res){
 
     });
 };
