@@ -21,7 +21,6 @@
     "passport": "0.1.x",
     "passport-steam": "0.1.x",
     "ejs-locals": "~0.2.5",
-    "ent": "0.0.4",
     "connect-mongo": "0.2.x",
     "async": "0.1.x",
     "xml2js": "~0.2.0"
