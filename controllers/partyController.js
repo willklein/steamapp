@@ -1,17 +1,21 @@
 var steamQuery = require('./../libs/steamQuery')(),
+    gameLookup = require('./../libs/gameLookup'),
     async = require('async'),
     Party = require('./../models/party');
 
 var getGames = function(callback){
-    steamQuery.games(this, function(err, data){
-        callback(err, data);
-    });
+    steamQuery.games(this, callback);
+};
+var getPlayerProfile = function(callback){
+    steamQuery.player(this, callback);
+};
+
+var getGameInfo = function(callback){
+    gameLookup(this.appID, callback);
 };
 
 var getPlayers = function(callback){
-    steamQuery.group(this, function(err, data){
-        callback(err, data);
-    });
+    steamQuery.group(this, callback);
 };
 
 var getPlayersFromGroups = function(groupIds, cb){
@@ -31,7 +35,7 @@ var getPlayersFromGroups = function(groupIds, cb){
 };
 
 var getGamesFromPlayers = function(players, cb){
-    var called = {}, games = {}, getGamesFn = [], playersResult = [];
+    var called = {}, gamesHash = {}, getGamesFn = [], playersHash = {};
 
     players.forEach(function(player){
         if (!called[player.steamID64]){
@@ -51,16 +55,100 @@ var getGamesFromPlayers = function(players, cb){
 
             result.games = result.games || [];
             result.games.forEach(function(game){
-                games[game.appID] = games[game.appID] || { count: 0 };
-                games[game.appID].count += 1;
+                gamesHash[game.appID] = gamesHash[game.appID] || { count: 0, appID: game.appID };
+                gamesHash[game.appID].count += 1;
                 playerObj.games[game.appID] = game;
                 playerObj.gamesCount += 1;
             });
-            playersResult.push(playerObj);
+
+            playersHash[playerObj.steamID64] = playerObj
         });
 
-        cb(null, {games: games, players: playersResult});
+        cb(null, {gamesHash: gamesHash, playersHash: playersHash});
     });
+};
+
+// TODO: Make function not affect data
+var getGameData = function(data, cb){
+    var games = data.gamesHash, getGameFns = [];
+
+    for (var name in games){
+        if (games.hasOwnProperty(name)){
+            getGameFns.push(getGameInfo.bind(games[name]))
+        }
+    }
+    console.log('Num of games to lookup', getGameFns.length);
+    async.parallel(getGameFns, function(err, results){
+        results.forEach(function(game){
+            if (!game.isMultiplayer){
+                delete data.gamesHash[game.appID];
+            } else {
+                // mixin
+                for (var prop in game){
+                    if (game.hasOwnProperty(prop)){
+                        data.gamesHash[game.appID][prop] = game[prop];
+                    }
+                }
+            }
+        });
+
+        cb(err, data);
+    });
+};
+
+// TODO: Make function not affect data
+var getPlayerInfo = function(data, cb){
+    var players = data.playersHash, getPlayerProfileFns = [];
+
+    for (var id in players){
+        if (players.hasOwnProperty(id)){
+            getPlayerProfileFns.push(getPlayerProfile.bind(players[id]))
+        }
+    }
+
+    async.parallel(getPlayerProfileFns, function(err, results){
+        results.forEach(function(player){
+            // mixin
+            for (var prop in player){
+                if (player.hasOwnProperty(prop)){
+                    data.playersHash[player.steamID64][prop] = player[prop];
+                }
+            }
+        });
+
+
+        cb(err, data);
+    });
+
+};
+
+var getViewData = function(data){
+    var gamesArr = [], playersArr = [], prop;
+
+    for (prop in data.playersHash){
+        if (data.playersHash.hasOwnProperty(prop)){
+            playersArr.push(data.playersHash[prop]);
+        }
+    }
+
+    for (prop in data.gamesHash){
+        if (data.gamesHash.hasOwnProperty(prop)){
+            gamesArr.push(data.gamesHash[prop]);
+        }
+    }
+
+    playersArr.sort(function(a, b){
+        return b.gamesCount - a.gamesCount;
+    });
+
+    gamesArr.sort(function(a, b){
+        return b.count - a.count;
+    });
+
+    data.players = playersArr;
+    data.games = gamesArr;
+
+    return data;
 };
 
 
@@ -70,7 +158,9 @@ module.exports = function(app){
     app.get('/party/show/:id', function(req, res){
         // get party id
         var id = req.params.id;
-        var groups, players;
+        var groups, players, viewData;
+        var startTime = Date.now();
+
         // look up party in DB
         Party.findOne({_id: id}, function(err, party){
             // Create member objects with steamId64
@@ -84,18 +174,24 @@ module.exports = function(app){
 
                 // in parallel get all games people are playing
                 getGamesFromPlayers(players, function(err, data){
-//                    console.log(data);
-
-                    // lookup gameData
-                    // Filter
-
-                    // sort games based on how many people are playing each game
-                    // sort players based on how many games they have
-
-
-                    // create data to use when rendering
-                    // render page
-                    res.render('index', { user: req.user, groups: groups });
+                    async.parallel([
+                        function(callback){
+                            // lookup gameData
+                            getGameData(data, function(err, data){
+                                callback(err, data);
+                            });
+                        },
+                        function(callback){
+                            // lookup player info
+                            getPlayerInfo(data, function(err, data){
+                                callback(err, data);
+                            });
+                        }
+                    ], function(err, results){
+                        viewData = getViewData(results[0]);
+                        console.log('Show time: ', id, ' ', Date.now() - startTime);
+                        res.render('index', { user: req.user, groups: [] });
+                    });
                 });
             });
         });
