@@ -1,24 +1,25 @@
 <% layout('../layout') -%>
 <div class="show-party">
 
-<table class="table table-bordered">
+<table class="table">
     <thead>
         <tr class="info">
-            <th>Steam Username</th>
+            <th><span class="label">Steam Username</span></th>
             <%for(var i = 0; i < data.games.length; i++) {%>
-                <th><%=data.games[i].name%></th>
+                <!--<th><%=data.games[i].name%></th>-->
+                <th><img class="img-rounded" alt="<%=data.games[i].name%>" title="<%=data.games[i].name%>" src="<%=data.games[i].gameIcon%>" title=""></img></th>
             <%}%>
         </tr>
     </thead>
     <tbody>
         <%for(var i = 0; i < data.players.length; i++) {%>
         <tr>
-            <td><%=data.players[i].steamID%></td>
+            <td><span class="label label-inverse"><%=data.players[i].steamID%></span></td>
             <%for(var j = 0; j < data.games.length; j++) {
                 if(data.players[i].games[data.games[j].appID]){%>
-                <td>YES</td>
+                <td><span class="badge badge-success">YES</span></td>
                 <%}else{%>
-                <td>NO</td>
+                <td><span class="badge badge-important">NO</span></td>
                 <%}%>
             <%}%>
         </tr>

@@ -1,27 +1,11 @@
 <% layout('layout') -%>
-
 <% if(!user) {%>
   <div class="mainArea backImg">
     <div class="row-fluid">
-      <div id="leftBox" class="span4" style="margin-left:300px;">
-        <ul class="info-menu">
-            <li><h4>Games<h4></li>
-            <li class="divider"></li>
-            <li><p>Find out what games your friends are have, and tell them what they're missing!</p></li>
-        </ul>
-      </div>
-      <div id="rightBox" class="span4">
-        <ul class="info-menu">
-            <li><h4>Parties<h4></li>
-            <li class="divider"></li>
-            <li><p>Create a party to see what games you and your friends share</p></li>
-        </ul>
-      </div>
-    </div>
-    
-    <br />
-        <a class="btn btn-large btn btn-primary" href="/login">Sign in with Steam</a>
-    
+        <img id="logo" src="../img/onwhite.png" class="img-rounded"/>
+    </div>    
+
+    <a class="btn btn-large btn btn-primary" href="/login">Sign in with Steam</a>
   </div>
 <% } else { %>
   <div>

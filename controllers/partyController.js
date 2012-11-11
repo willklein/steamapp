@@ -198,12 +198,12 @@ module.exports = function(app){
 
     app.post('/party/create', function(req, res){
         // Get All Users of group
-        var groups = req.body.groups || [];
-//        var playerIds = req.body.players || [];
+        var groupIds = req.body.groupIds || [];
+        var playerIds = req.body.playerIds || [];
         var steamID64 = req.user.steamID64 || '';
-        
+
         var party = new Party({
-            groups: groups,
+            groups: groupIds,
             steamID64: steamID64
 //            players: playerIds
         });
@@ -214,7 +214,7 @@ module.exports = function(app){
                 return err;
             }
             console.log(party.id);
-            res.end({ redirect: '/party/show/' + party.id });
+            res.redirect('/party/show/' + party.id);
         });
     });
 
@@ -224,29 +224,27 @@ module.exports = function(app){
                 if (err){
                     console.log(err);
                 }
-                
-                var groups = (data && data.groups) || [];
-                res.render('party/new', { user: req.user, groups: groups });
+                res.render('index', { user: req.user, groups: groups });
             });
         } else {
             req.redirect('/');
         }
     });
 
-//    app.post('/party/delete', function(req, res){
-//        if (req.isAuthenticated() && req.body.id){
-//
-//            Party.remove({steamID64: req.user.steamID64, _id: req.body.id }, function(err){
-//                if (err){
-//                    res.end('Error ' + err);
-//                } else {
-//                    res.end('Removed ' + req.body.id);
-//                }
-//            });
-//        } else {
-//            res.end('Not authenticated');
-//        }
-//    });
+    app.post('/party/delete', function(req, res){
+        if (req.isAuthenticated() && req.body.id){
+
+            Party.remove({steamID64: req.user.steamID64, _id: req.body.id }, function(err){
+                if (err){
+                    res.end('Error ' + err);
+                } else {
+                    res.end('Removed ' + req.body.id);
+                }
+            });
+        } else {
+            res.end('Not authenticated');
+        }
+    });
 
     app.get('/party/list', function(req, res){
         if (req.isAuthenticated()){
