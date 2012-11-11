@@ -1,59 +1,32 @@
 html,
 body {
-	height: 100%;
-	color: #5a5a5a;
-}
-
-#wrap {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	margin: 0 auto -90px;
+  color: #5a5a5a;
 }
 
 #footer {
-	height: 90px;
-	-webkit-box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
-     -moz-box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
-}
-#footer {
-	padding-top: 10px;
-}
-
-@media (max-width: 767px) {
-	#footer {
-	  margin-left: -20px;
-	  margin-right: -20px;
-	  padding-left: 20px;
-	  padding-right: 20px;
-	}
+  padding-top: 2px;
 }
 
 .backImg {
-	background-image: url('../img/games1.jpg');
-	background-repeat:no-repeat;
-	z-index: -1;
+  background-image: url('../img/games.jpg');
+  background-repeat:no-repeat;
+  z-index: -1;
+  opacity: 0.9;
 }
 
 .mainArea {
-	background-color: transparent;
-	padding: 150px 0 240px 0;
-	margin: 0;
-	text-align: center;
-	
+  background-color: transparent;
+  padding: 150px 0 180px 0;
+  margin: 0;
+  text-align: center; 
 }
-.mainArea h1 {
-	font-size: 72px;
-	line-height: 1;
-	color: white;
-    text-shadow: -8px 0 black, 0 8px black, 8px 0 black, 0 -8px black;
-	z-index: 100px;
-}
+
 .mainArea .btn {
-	font-size: 28px;
-	font-weight: bold;
-	padding: 24px 24px;	
+  font-size: 28px;
+  font-weight: bold;
+  padding: 24px 24px; 
+  opacity: 1;
+  z-index: 100;
 }
 
 .list-menu {
