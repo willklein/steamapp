@@ -21,7 +21,8 @@
     "passport": "0.1.x",
     "passport-steam": "0.1.x",
     "xml2json": "~0.3.2",
-    "ejs-locals": "~0.2.5"
+    "ejs-locals": "~0.2.5",
+    "ent": "0.0.4"
   },
   "engines": {
     "node": "0.8.x"

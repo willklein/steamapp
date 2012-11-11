@@ -1,3 +1,5 @@
+var ent = require('ent');
+
 var readGroups = function(data) {
     var group;
     var groups = data.group || [];
@@ -12,7 +14,7 @@ var readGroups = function(data) {
         
         result.push({
             groupID64: group.groupID64.toString(),
-            groupName: group.groupName,
+            groupName: ent.decode(group.groupName),
             groupURL: group.groupURL,
             avatarIcon: group.avatarIcon
         });
