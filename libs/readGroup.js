@@ -1,3 +1,5 @@
+var ent = require('ent');
+
 var readGroup = function(data) {
     var steamID64;
     var group = data.memberList;
@@ -15,7 +17,7 @@ var readGroup = function(data) {
 //
     return {
         groupID64: group.groupID64.toString(),
-        groupName: groupDetails.groupName,
+        groupName: ent.decode(groupDetails.groupName),
         groupURL: groupDetails.groupURL,
         avatarIcon: groupDetails.avatarIcon,
         members: membersResult

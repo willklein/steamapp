@@ -137,12 +137,7 @@ var steamQuery = function() {
 //    console.log(result);
 //});
 
-//query.group(groupKey, function(err, result) {
-//    if (err) {
-//        console.log("Error: " + err);
-//    }
-//    console.log(result);
-//});
+//query.groupg
 
 //query.friends(playerKey, function(err, result) {
 //    if (err) {
