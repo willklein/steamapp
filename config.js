@@ -18,8 +18,8 @@ passport.use(new SteamStrategy({
     },
     function(identifier, profile, done) {
         process.nextTick(function () {
-            var steamID64 = identifier.substring(identifier.lastIndexOf('/')+1);
             profile.identifier = identifier;
+            profile.steamID64 = identifier.substring(identifier.lastIndexOf('/') + 1);
 
             done(null, profile);
         });
