@@ -1,6 +1,6 @@
 {
   "name": "nko3-hartfordjs",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "HartfordJS",
   "main": "server.js",
   "scripts": {

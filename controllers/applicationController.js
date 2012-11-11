@@ -1,5 +1,4 @@
-var steamQuery = require('./../libs/steamQuery'),
-    Party = require('./../models/party');
+var Party = require('./../models/party');
 
 module.exports = function(app){
     app.get('/', function(req, res) {
