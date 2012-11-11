@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 //});
 
 var PartySchema = new mongoose.Schema({
+    name: String,
     groups: [String],
     players: [String],
     steamID64: String
