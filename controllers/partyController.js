@@ -198,12 +198,14 @@ module.exports = function(app){
 
     app.post('/party/create', function(req, res){
         // Get All Users of group
-        var groupIds = req.body.groupIds || [];
-        var playerIds = req.body.playerIds || [];
+//        var groupIds = req.body.groupIds || [];
+//        var playerIds = req.body.playerIds || [];
         var steamID64 = req.user.steamID64 || '';
 
+        var groupID64 = req.body.create;
         var party = new Party({
-            groups: groupIds,
+//            groups: groupIds,
+            groups: [groupID64],
             steamID64: steamID64
 //            players: playerIds
         });
@@ -220,7 +222,7 @@ module.exports = function(app){
 
     app.get('/party/new', function(req, res) {
         if (req.isAuthenticated()) {
-            steamQuery().player(req.user, function(err, data) {
+            steamQuery.player(req.user, function(err, data) {
                 if (err){
                     console.log(err);
                 }

@@ -1,10 +1,36 @@
-<% layout('layout') -%>
+<% layout('../layout') -%>
 
 <div class="container">
   <br>
   <br>
   <br>
-  <h1>Your Parties</h1>
+  <h1>Select a Group</h1>
 
-  <a href="/party/new">Create a Party</a>
+    
+  <ul id="groupList">
+
+  <% for (var i = 0; i < groups.length; i++) { %>
+    <li><button id="<%= groups[i].groupID64 %>"><%= groups[i].groupName %></button></li>
+  <% } %>
+  
+  </ul>
+  
+  
+  <script type="text/javascript">
+    $(function() {
+      $('#groupList button').click(function() {
+        var groupID64 = $(this).attr('id');
+        console.log(groupID64);
+
+        $.ajax({
+          type: 'POST',
+          url: '/party/create',
+          data: { groups: [groupID64] },
+          success: function(data) { console.log('created:' + data); },
+          dataType: 'json'
+        });
+      });
+    });
+  </script>
+
 </div>
