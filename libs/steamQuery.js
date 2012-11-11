@@ -23,7 +23,7 @@ var steamCommunity = {
     },
     getGroupByID64: function(groupID64) {
         return 'http://steamcommunity.com/gid/' + groupID64 + '/memberslistxml';
-    },  
+    },
     getFriends: function(customURL) {
         return 'http://steamcommunity.com/id/' + customURL + '/friends/?xml=1';
     },
@@ -114,7 +114,8 @@ var steamQuery = function() {
 // sample usage
 
 //var playerKey = {
-//    steamID64: '76561197972886336'
+////    steamID64: '76561197972886336'
+//    steamID64: '76561197992317700'
 ////  , customURL: 'willscience'
 //};
 //var groupKey = {

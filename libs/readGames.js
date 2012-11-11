@@ -4,6 +4,10 @@ var readGames = function(data) {
     var games = (gamesList.games && gamesList.games.game) || [];
     var gamesResult = [];
     
+    if (games.length === undefined) {
+        games = [games];
+    }
+    
     for (var i in games) {
         game = games[i];
 
