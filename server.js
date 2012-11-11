@@ -3,10 +3,10 @@ var express = require('express'),
     fs = require('fs'),
     app = express();
 
-require('./config')(app);
-
 //connect to the db
 mongoose.connect(process.env.DB_URL || 'mongodb://localhost/hartfordJS');
+
+require('./config')(app);
 
 // Load all controllers
 fs.readdir('./controllers', function(err, files){
