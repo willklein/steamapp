@@ -65,6 +65,8 @@ var getGamesFromPlayers = function(players, cb){
 
 
 module.exports = function(app){
+
+    // http://localhost:3000/party/show/509fea579626e9601b000001
     app.get('/party/show/:id', function(req, res){
         // get party id
         var id = req.params.id;
@@ -82,7 +84,7 @@ module.exports = function(app){
 
                 // in parallel get all games people are playing
                 getGamesFromPlayers(players, function(err, data){
-                    console.log(data);
+//                    console.log(data);
 
                     // lookup gameData
                     // Filter
@@ -115,6 +117,7 @@ module.exports = function(app){
                 console.log('Save Error:', err);
                 return err;
             }
+            console.log(party.id);
             res.redirect('/party/show/' + party.id);
         });
     });

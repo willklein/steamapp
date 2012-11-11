@@ -10,7 +10,6 @@ var Cache = mongoose.model('Cache', CacheSchema);
 
 module.exports = function(url, cb){
     Cache.findOne({url: url}, function(err, results){
-        console.log(results);
         if (err || !results){
             request(url, function(err, data){
                 new Cache({
